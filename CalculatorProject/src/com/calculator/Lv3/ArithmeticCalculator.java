@@ -17,7 +17,10 @@ public class ArithmeticCalculator<T> {
         case ADD -> (T) Double.valueOf(x + y);
         case SUB -> (T) Double.valueOf(x - y);
         case MUL -> (T) Double.valueOf(x * y);
-        case DIV -> (T) Double.valueOf(x / y);
+        case DIV -> {
+          if (Double.compare(y, 0.0) == 0) throw new ArithmeticException();
+          yield (T) Double.valueOf(x / y);
+        }
         default -> throw new Exception();
       };
     } else if (a instanceof Integer) {
